@@ -292,7 +292,6 @@ public class Bibliotheque implements Serializable{
                 
                 Ouvrage ouvrage = new Ouvrage(isbn, titreOuvrage, nomEditeur, dateParution, nomAuteur, lecteur);
                 lierOuvrage(ouvrage, isbn);
-                ouvrage.afficherOuvrage();
         }
         else {
             
@@ -404,6 +403,7 @@ public class Bibliotheque implements Serializable{
        
     }
 }
+
 
 
 
