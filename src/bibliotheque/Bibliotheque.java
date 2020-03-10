@@ -238,7 +238,7 @@ public class Bibliotheque implements Serializable{
         }
     }
     
-    public void nouvelOuvrage(String isbn) {
+    public void nouvelOuvrageIsbn(String isbn) {
         if (getOuvrage(isbn) == null) {
             
             System.out.println("Saisir la date de parution");
@@ -319,7 +319,7 @@ public class Bibliotheque implements Serializable{
             
             if(entree.next().toLowerCase().matches("o")){
                 
-                nouvelOuvrage(isbn);
+                nouvelOuvrageIsbn(isbn);
                 ouvrage = getOuvrage(isbn);
                 System.out.println("L'ouvrage à été créé, vous allez maintenant lui créer des exemplaires");
             }
@@ -403,6 +403,8 @@ public class Bibliotheque implements Serializable{
        
     }
 }
+
+
 
 
 
