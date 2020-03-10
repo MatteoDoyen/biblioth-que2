@@ -75,7 +75,7 @@ public class Bibliotheque implements Serializable{
             dernierNumeroLecteur += 1;
             Lecteur lecteur = new Lecteur(nomLecteur, prenomLecteur, dernierNumeroLecteur, dateNaissance, adresse, numeroTelephone);
             lierLecteur(lecteur, dernierNumeroLecteur);
-            
+            System.out.println("Le nouveau lecteur à été créé");
         }
         else {
             
@@ -224,13 +224,12 @@ public class Bibliotheque implements Serializable{
                         
                     default:
                         
-                        lecteur = TypeLecteur.enfant;
+                        lecteur = TypeLecteur.adulte;
                         break;
                 }
                 
                 Ouvrage ouvrage = new Ouvrage(isbn, titreOuvrage, nomEditeur, dateParution, nomAuteur, lecteur);
                 lierOuvrage(ouvrage, isbn);
-                ouvrage.afficherOuvrage();
         }
         else {
             
@@ -323,6 +322,7 @@ public class Bibliotheque implements Serializable{
                 
                 nouvelOuvrage(isbn);
                 ouvrage = getOuvrage(isbn);
+                System.out.println("L'ouvrage à été créé, vous allez maintenant lui créer des exemplaires");
             }
             else {
                 
@@ -349,6 +349,7 @@ public class Bibliotheque implements Serializable{
                 if(nombreExemplaireEmpruntable<=nombreExemplaire){
                     
                    ouvrage.ajouterExemplaire(nombreExemplaire, nombreExemplaireEmpruntable,dateReception);
+                   System.out.println("Tout les exemplaires ont été ajoutés");
                 }
                 else{
                     
@@ -403,83 +404,6 @@ public class Bibliotheque implements Serializable{
        
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
