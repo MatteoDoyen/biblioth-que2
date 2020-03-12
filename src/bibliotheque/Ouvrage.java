@@ -29,24 +29,24 @@ public class Ouvrage implements Serializable{
    
     Ouvrage(String isbn, String titre, String nomEditeur, GregorianCalendar dateParution, String nomsAuteurs, TypeLecteur cible){
        
-        this.isbn = isbn;
-        this.titre = titre;
-        this.nomEditeur = nomEditeur;
-        this.dateParution = dateParution;
-        this.auteurs = nomsAuteurs;
-        this.cible = cible;
-        this.dernierNumeroExemplaire = 0;
-        this.exemplaires = new ArrayList<>();
+        isbn = isbn;
+        titre = titre;
+        nomEditeur = nomEditeur;
+        dateParution = dateParution;
+        auteurs = nomsAuteurs;
+        cible = cible;
+        dernierNumeroExemplaire = 0;
+        exemplaires = new ArrayList<>();
     }
    
     public void afficherOuvrage(){
        
-        System.out.println("isbn : "+this.isbn);
-        System.out.println("titre : "+this.titre);
-        System.out.println("nomEditeur : "+this.nomEditeur);
-        System.out.println("dateParution : "+EntreesSorties.ecrireDate(this.dateParution));
-        System.out.println("auteur(s) : "+this.auteurs);
-        System.out.println("public : "+this.cible);
+        System.out.println("isbn : "+isbn);
+        System.out.println("titre : "+titre);
+        System.out.println("nomEditeur : "+nomEditeur);
+        System.out.println("dateParution : "+EntreesSorties.ecrireDate(dateParution));
+        System.out.println("auteur(s) : "+auteurs);
+        System.out.println("public : "+cible);
        
     }
    
@@ -57,16 +57,16 @@ public class Ouvrage implements Serializable{
         //ajouter les exemplaires empruntable
         for(int i = 0; i < nombreExemplaireEmpruntable; i++){
             
-            this.dernierNumeroExemplaire++;
-            this.exemplaires.add(new Exemplaire (dernierNumeroExemplaire,dateReception,true,this));
+            dernierNumeroExemplaire++;
+            exemplaires.add(new Exemplaire (dernierNumeroExemplaire,dateReception,true,this));
         }
        
         //ajouter les exemplaires non empruntable
         for(int i = 0; i < nombreExemplaire-nombreExemplaireEmpruntable; i++){
             
             System.out.println("test");
-            this.dernierNumeroExemplaire++;
-            this.exemplaires.add(new Exemplaire (dernierNumeroExemplaire,dateReception,false,this));          
+            dernierNumeroExemplaire++;
+            exemplaires.add(new Exemplaire (dernierNumeroExemplaire,dateReception,false,this));          
         }
        
     }
@@ -87,6 +87,18 @@ public class Ouvrage implements Serializable{
     public GregorianCalendar getDateParution(){
        
         return this.dateParution;
+    }
+    public Exemplaire getExemplaire(int NumeroExemplaire)
+    {
+        Exemplaire exemplaire=null;
+        for(Exemplaire unExemplaire : exemplaires)
+        {
+            if(unExemplaire.getNumeroExemplaire()==NumeroExemplaire)
+            {
+                exemplaire=unExemplaire;
+            }
+        }
+        return exemplaire;
     }
    
 }

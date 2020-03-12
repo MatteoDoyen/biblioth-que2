@@ -1,6 +1,7 @@
 package bibliotheque;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -19,18 +20,20 @@ public class Lecteur implements Serializable {
     private GregorianCalendar dateNaissance;
     private String adresse;
     private String numeroTelephone;
+    private ArrayList<Exemplaire> Exemplaires;
 
     // -----------------------------------------------
     //Constructeur
     // -----------------------------------------------
     public Lecteur(String nom, String prenom, Integer numLecteur, GregorianCalendar dateNaissance, String adresse, String numeroTelephone) {
         
-        this.nom = nom;
-        this.prenom = prenom;
-        this.numeroLecteur = numLecteur;
-        this.dateNaissance = dateNaissance;
-        this.adresse = adresse;
-        this.numeroTelephone = numeroTelephone;
+        nom = nom;
+        prenom = prenom;
+        numeroLecteur = numLecteur;
+        dateNaissance = dateNaissance;
+        adresse = adresse;
+        numeroTelephone = numeroTelephone;
+        Exemplaires=new ArrayList<>();
     }
 
    
@@ -44,11 +47,19 @@ public class Lecteur implements Serializable {
     public void afficherLecteur() {
         
         
-        System.out.println("Numero lecteur : " + this.numeroLecteur);
-        System.out.println("Nom et prenom du lecteur: " + this.nom + " " + this.prenom);
-        System.out.println("Age : " + this.calculAge() + " ans");
-        System.out.println("Adresse : " + this.adresse);
-        System.out.println("Telephone : " + this.numeroTelephone);
+        System.out.println("Numero lecteur : " + numeroLecteur);
+        System.out.println("Nom et prenom du lecteur: " + nom + " " + prenom);
+        System.out.println("Age : " + calculAge() + " ans");
+        System.out.println("Adresse : " + adresse);
+        System.out.println("Telephone : " + numeroTelephone);
+        if(Exemplaires!= null)
+        {
+            System.out.println("Exemplaires empruntés");
+            for(Exemplaire exemplaire : Exemplaires)
+            {
+                exemplaire.afficheExemplaire();
+            }
+        }
         EntreesSorties.afficherMessage("");
     }
 
@@ -76,4 +87,10 @@ public class Lecteur implements Serializable {
     }
 
 }
+
+
+
+
+
+
 
