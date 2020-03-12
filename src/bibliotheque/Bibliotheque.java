@@ -227,8 +227,8 @@ public class Bibliotheque implements Serializable {
 
         }
     }
-
-    public void nouvelOuvrage(String isbn) {
+    
+    public void nouvelOuvrageIsbn(String isbn) {
         if (getOuvrage(isbn) == null) {
 
             System.out.println("Saisir la date de parution");
@@ -240,50 +240,50 @@ public class Bibliotheque implements Serializable {
                 System.out.println("La date de parution est ultérieur à aujourd'hui, veuillez rentrer une date valide");
                 dateParution = lireDate();
             }
-            System.out.println("Saisir le titre du nouvel ouvrage");
-            entree = new Scanner(System.in);
-            String titreOuvrage = entree.nextLine();
-
-            System.out.println("le nom de l'éditeur");
-            entree = new Scanner(System.in);
-            String nomEditeur = entree.nextLine();
-
-            System.out.println("le ou les auteur(s)");
-            entree = new Scanner(System.in);
-            String nomAuteur = entree.nextLine();
-
-            System.out.println("le type de public (1 enfant,2 adolescent,3 adulte)");
-            entree = new Scanner(System.in);
-            TypeLecteur lecteur;
-
-            switch (entree.nextInt()) {
-
-                case 1:
-
-                    lecteur = TypeLecteur.enfant;
-                    break;
-
-                case 2:
-
-                    lecteur = TypeLecteur.adolescent;
-                    break;
-
-                case 3:
-
-                    lecteur = TypeLecteur.adulte;
-                    break;
-
-                default:
-
-                    lecteur = TypeLecteur.enfant;
-                    break;
-            }
-
-            Ouvrage ouvrage = new Ouvrage(isbn, titreOuvrage, nomEditeur, dateParution, nomAuteur, lecteur);
-            lierOuvrage(ouvrage, isbn);
-            ouvrage.afficherOuvrage();
-        } else {
-
+                System.out.println("Saisir le titre du nouvel ouvrage");
+                entree = new Scanner(System.in);
+                String titreOuvrage = entree.nextLine();
+                
+                System.out.println("le nom de l'éditeur");
+                entree = new Scanner(System.in);
+                String nomEditeur = entree.nextLine();
+                
+                System.out.println("le ou les auteur(s)");
+                entree = new Scanner(System.in);
+                String nomAuteur = entree.nextLine();
+                
+                System.out.println("le type de public (1 enfant,2 adolescent,3 adulte)");
+                entree = new Scanner(System.in);
+                TypeLecteur lecteur;
+                
+                switch (entree.nextInt()) {
+                    
+                    case 1:
+                        
+                        lecteur = TypeLecteur.enfant;
+                        break;
+                        
+                    case 2:
+                        
+                        lecteur = TypeLecteur.adolescent;
+                        break;
+                        
+                    case 3:
+                        
+                        lecteur = TypeLecteur.adulte;
+                        break;
+                        
+                    default:
+                        
+                        lecteur = TypeLecteur.enfant;
+                        break;
+                }
+                
+                Ouvrage ouvrage = new Ouvrage(isbn, titreOuvrage, nomEditeur, dateParution, nomAuteur, lecteur);
+                lierOuvrage(ouvrage, isbn);
+        }
+        else {
+            
             System.out.println("Il existe déjà un ouvrage de même isbn dans cette bibliothèque");
 
         }
@@ -304,10 +304,10 @@ public class Bibliotheque implements Serializable {
 
             System.out.println("Il ne semble pas exister d'ouvrage avec ce numero d'isbn, souhaitez vous le créer ? O/N");
             entree = new Scanner(System.in);
-
-            if (entree.next().toLowerCase().matches("o")) {
-
-                nouvelOuvrage(isbn);
+            
+            if(entree.next().toLowerCase().matches("o")){
+                
+                nouvelOuvrageIsbn(isbn);
                 ouvrage = getOuvrage(isbn);
                 System.out.println("L'ouvrage à été créé, vous allez maintenant lui créer des exemplaires");
             } else {
@@ -420,7 +420,6 @@ public class Bibliotheque implements Serializable {
 
     }
 }
-
 
 
 
