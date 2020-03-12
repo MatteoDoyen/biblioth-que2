@@ -15,7 +15,6 @@ public class Exemplaire implements Serializable{
     private boolean empruntable;
     private Ouvrage ouvrage;
     private boolean disponible;
-    private Lecteur lecteur;
    
     public Exemplaire (int numExemplaire, GregorianCalendar dateReception,boolean empruntable,Ouvrage ouvrage){
         numeroExemplaire = numExemplaire;

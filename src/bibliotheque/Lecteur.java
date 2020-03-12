@@ -20,7 +20,7 @@ public class Lecteur implements Serializable {
     private GregorianCalendar dateNaissance;
     private String adresse;
     private String numeroTelephone;
-    private ArrayList<Exemplaire> Exemplaires;
+    private int nbEmprunt;
 
     // -----------------------------------------------
     //Constructeur
@@ -33,7 +33,6 @@ public class Lecteur implements Serializable {
         dateNaissance = dateNaissance;
         adresse = adresse;
         numeroTelephone = numeroTelephone;
-        Exemplaires=new ArrayList<>();
     }
 
    
@@ -52,14 +51,6 @@ public class Lecteur implements Serializable {
         System.out.println("Age : " + calculAge() + " ans");
         System.out.println("Adresse : " + adresse);
         System.out.println("Telephone : " + numeroTelephone);
-        if(Exemplaires!= null)
-        {
-            System.out.println("Exemplaires empruntés");
-            for(Exemplaire exemplaire : Exemplaires)
-            {
-                exemplaire.afficheExemplaire();
-            }
-        }
         EntreesSorties.afficherMessage("");
     }
 
@@ -85,12 +76,15 @@ public class Lecteur implements Serializable {
         
         return age;
     }
-
+    public void addEmprunt()
+    {
+        nbEmprunt++;
+    }
+    public int getNbEMprunt()
+    {
+        return nbEmprunt;
+    }
 }
-
-
-
-
 
 
 

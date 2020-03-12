@@ -16,6 +16,7 @@ public class Bibliotheque implements Serializable {
     private HashMap<Integer, Lecteur> lecteurs;
     private int dernierNumeroLecteur;
     private HashMap<String, Ouvrage> ouvrages;
+    private ArrayList<Emprunt> emprunts;
 
     /*
 		 * Le dictionnaire de lecteur permet à bibliotheque de 
@@ -391,19 +392,23 @@ public class Bibliotheque implements Serializable {
         String isbn = entree.next();
         Ouvrage ouvrage= getOuvrage(isbn);
         if (ouvrage != null) {
-            System.out.println("Saisir le numero d'isbn de l'exemplaire à emprunter");
+            System.out.println("Saisir le numero de lecteur");
             entree = new Scanner(System.in);
-            int numLecteur = entree.nextInt();
-            if (getLecteur(numLecteur) != null) {
+            Lecteur lecteur=getLecteur(entree.nextInt());
+            if (lecteur != null) {
                 System.out.println("Saisir le numero d'exemplaire que vous souhaitez emprunter");
                 entree = new Scanner(System.in);
-                int numExemplaire = entree.nextInt();
-                Exemplaire exemplaire=ouvrage.getExemplaire(numExemplaire);
+                Exemplaire exemplaire=ouvrage.getExemplaire(entree.nextInt());
                 if(exemplaire!=null)
                 {
-                    if(exemplaire.estEmpruntable())
+                    if(exemplaire.estEmpruntable()&&lecteur.getNbEMprunt()<5)
                     {
-                        
+                        emprunts.add(new Emprunt(lecteur,exemplaire));
+                        System.out.println("L'exemplaire est emprunté, le lecteur à jusqu'au : ");
+                    }
+                    else
+                    {
+                        System.out.println("L'exemplaire n'est pas empruntable ou le lecteur à trop d'emprunt");
                     }
                 }
                 else
@@ -420,6 +425,20 @@ public class Bibliotheque implements Serializable {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
