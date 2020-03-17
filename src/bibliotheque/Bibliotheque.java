@@ -372,7 +372,7 @@ public class Bibliotheque implements Serializable {
         Scanner entree = new Scanner(System.in);
         Ouvrage ouvrage = getOuvrage(entree.next());
 
-        if (ouvrage != null) {
+        if (ouvrage != null&&ouvrage.getNombreExemplaire()>0) {
 
             ouvrage.afficherOuvrage();
 
@@ -381,7 +381,7 @@ public class Bibliotheque implements Serializable {
                 exemplaire.afficheExemplaire();
             }
         } else {
-            System.out.println("Il n'existe pas d'exemplaire du numero isbn saisi");
+            System.out.println("Il n'existe pas d'exemplaire du numero isbn saisi ou il n'a aucun exemplaire");
         }
     }
 
@@ -401,7 +401,7 @@ public class Bibliotheque implements Serializable {
                 Exemplaire exemplaire=ouvrage.getExemplaire(entree.nextInt());
                 if(exemplaire!=null)
                 {
-                    if(exemplaire.estEmpruntable()&&lecteur.getNbEMprunt()<5)
+                    if(exemplaire.estEmpruntable()&&lecteur.getNbEmprunt()<5)
                     {
                         if(lecteur.calculAge()>=ouvrage.getTypeLecteur().ageMin())
                         {
@@ -455,6 +455,7 @@ public class Bibliotheque implements Serializable {
                 {
                 emprunts.remove(emprunt);
                 exemplaire.setDisponibilite(true);
+                emprunt.getLecteur().modifierEmprunt(-1);
                 System.out.println("L'exemplaire à été rendu");
                 }
                 else
@@ -477,7 +478,7 @@ public class Bibliotheque implements Serializable {
         Scanner entree=new Scanner(System.in);
         System.out.println("Saisissez un numero de lecteur");
         Lecteur lecteur=lecteurs.get(entree.nextInt());
-        if(lecteur!=null)
+        if(lecteur!=null&&(lecteur.getNbEmprunt()>0))
         {
             lecteur.afficherLecteur();
             for(Emprunt unEmprunt : emprunts)
@@ -490,17 +491,18 @@ public class Bibliotheque implements Serializable {
         }
         else
         {
-            System.out.println("Il n'existe pas de lecteur du numéro saisi");
+            System.out.println("Il n'existe pas de lecteur du numéro saisi ou il n'a rien emprunté");
         }
-        
+
     }
     public void RelancerLecteur(){
 
         GregorianCalendar dateRappel = new GregorianCalendar();
         GregorianCalendar dateAjd = new GregorianCalendar();
-        
+
         for(int i=0;i<emprunts.size();i++){
 
+        
             dateRappel=emprunts.get(i).getdateRetour();
             dateRappel.add(GregorianCalendar.DAY_OF_WEEK, 15);
 

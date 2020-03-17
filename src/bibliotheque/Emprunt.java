@@ -27,7 +27,7 @@ public class Emprunt {
             this.lecteur=lecteur;
             exemplaire.setDisponibilite(false);
             this.exemplaire=exemplaire;
-            lecteur.addEmprunt();
+            lecteur.modifierEmprunt(1);
         }
         public void afficherEmprunt()
         {

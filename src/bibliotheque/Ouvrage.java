@@ -111,4 +111,8 @@ public class Ouvrage implements Serializable{
     {
         return titre;
     }
+    public int getNombreExemplaire()
+    {
+        return dernierNumeroExemplaire;
+    }
 }

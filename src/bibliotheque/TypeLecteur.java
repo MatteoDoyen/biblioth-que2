@@ -22,11 +22,7 @@ public enum TypeLecteur {
     {
         
         this.type=type;
-    }
-  
-    public String toString(){
-        
-        return type;
+        this.ageMin=ageMin;
     }
     public int ageMin(){
         
