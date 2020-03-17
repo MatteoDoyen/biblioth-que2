@@ -31,11 +31,11 @@ public class Emprunt {
         }
         public void afficherEmprunt()
         {
-            System.out.println("Date d'emprunt : "+EntreesSorties.ecrireDate(dateEmprunt));
-            System.out.println("Date de retour : "+EntreesSorties.ecrireDate(dateRetour));
-            System.out.println("Numero de lecteur : "+lecteur.getNumLecteur()) ;
+            System.out.println("Titre de l'ouvrage : "+exemplaire.getOuvrage().getTitre());
             System.out.println("Numero d'isbn de l'ouvrage : "+exemplaire.getOuvrage().getIsbn());
             System.out.println("Numero de l'exemplaire empruntés : "+exemplaire.getNumeroExemplaire());
+            System.out.println("Date d'emprunt : "+EntreesSorties.ecrireDate(dateEmprunt));
+            System.out.println("Date de retour : "+EntreesSorties.ecrireDate(dateRetour));
         }
         public Exemplaire getExemplaire()
         {
@@ -44,5 +44,9 @@ public class Emprunt {
         public Lecteur getLecteur()
         {
             return lecteur;
+        }
+        public GregorianCalendar getdateRetour()
+        {
+            return dateRetour;
         }
 }

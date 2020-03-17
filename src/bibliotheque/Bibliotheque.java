@@ -431,13 +431,7 @@ public class Bibliotheque implements Serializable {
         }
 
     }
-    public void ConsulterLesEmprunts()
-    {
-        for(int i=0;i<emprunts.size();i++)
-        {
-            emprunts.get(i).afficherEmprunt();
-        }
-    }
+
     public void RendreExemplaire()
     {
         Scanner entree=new Scanner(System.in);
@@ -459,7 +453,7 @@ public class Bibliotheque implements Serializable {
                 }
                 if(emprunts!=null)
                 {
-                emprunts.remove(emprunts);
+                emprunts.remove(emprunt);
                 exemplaire.setDisponibilite(true);
                 System.out.println("L'exemplaire à été rendu");
                 }
@@ -485,9 +479,13 @@ public class Bibliotheque implements Serializable {
         Lecteur lecteur=lecteurs.get(entree.nextInt());
         if(lecteur!=null)
         {
+            lecteur.afficherLecteur();
             for(Emprunt unEmprunt : emprunts)
             {
-                if(unEmprunt.getLecteur())
+                if(unEmprunt.getLecteur()==lecteur)
+                {
+                    unEmprunt.afficherEmprunt();
+                }
             }
         }
         else
@@ -495,6 +493,22 @@ public class Bibliotheque implements Serializable {
             System.out.println("Il n'existe pas de lecteur du numéro saisi");
         }
         
+    }
+    public void RelancerLecteur(){
+
+        GregorianCalendar dateRappel = new GregorianCalendar();
+        GregorianCalendar dateAjd = new GregorianCalendar();
+        
+        for(int i=0;i<emprunts.size();i++){
+
+            dateRappel=emprunts.get(i).getdateRetour();
+            dateRappel.add(GregorianCalendar.DAY_OF_WEEK, 15);
+
+            if(dateAjd.compareTo(dateRappel)>=0){
+
+                emprunts.get(i).afficherEmprunt();
+            }
+        }
     }
 }
 

@@ -64,7 +64,6 @@ public class Ouvrage implements Serializable{
         //ajouter les exemplaires non empruntable
         for(int i = 0; i < nombreExemplaire-nombreExemplaireEmpruntable; i++){
             
-            System.out.println("test");
             dernierNumeroExemplaire++;
             exemplaires.add(new Exemplaire (dernierNumeroExemplaire,dateReception,false,this));          
         }
@@ -107,5 +106,9 @@ public class Ouvrage implements Serializable{
     public String getIsbn()
     {
         return isbn;
+    }
+    public String getTitre()
+    {
+        return titre;
     }
 }
