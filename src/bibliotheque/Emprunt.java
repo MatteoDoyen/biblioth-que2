@@ -25,8 +25,8 @@ public class Emprunt {
             dateRetour=new GregorianCalendar();
             dateRetour.add(GregorianCalendar.DAY_OF_WEEK, 8);
             this.lecteur=lecteur;
-            this.exemplaire=exemplaire;
             exemplaire.setDisponibilite(false);
+            this.exemplaire=exemplaire;
             lecteur.addEmprunt();
         }
         public void afficherEmprunt()
@@ -36,5 +36,9 @@ public class Emprunt {
             System.out.println("Numero de lecteur : "+lecteur.getNumLecteur()) ;
             System.out.println("Numero d'isbn de l'ouvrage : "+exemplaire.getOuvrage().getIsbn());
             System.out.println("Numero de l'exemplaire empruntés : "+exemplaire.getNumeroExemplaire());
+        }
+        public Exemplaire getExemplaire()
+        {
+            return exemplaire;
         }
 }

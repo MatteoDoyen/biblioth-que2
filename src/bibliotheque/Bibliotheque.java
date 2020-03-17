@@ -433,16 +433,46 @@ public class Bibliotheque implements Serializable {
     }
     public void ConsulterLesEmprunts()
     {
-        int i=0;
-        for(Emprunt unEmprunt : emprunts)
-        {   i++;
-            System.out.println("Emprunts numero : "+i);
-            unEmprunt.afficherEmprunt();
+        for(int i=0;i<emprunts.size();i++)
+        {
+            emprunts.get(i).afficherEmprunt();
         }
     }
     public void RendreExemplaire()
     {
-        
+        Scanner entree=new Scanner(System.in);
+        System.out.println("Veuillez rentrez le numero d'isbn de l'exemplaire à rendre");
+        Ouvrage ouvrage=getOuvrage(entree.next());
+        if(ouvrage!=null)
+        {
+            System.out.println("Veuillez rentrez le numero d'exemplaire emprunté");
+            Exemplaire exemplaire=ouvrage.getExemplaire(entree.nextInt());
+            if(exemplaire!=null&&exemplaire.estEmprunter())
+            {
+                Emprunt emprunt;
+                for(int i =0;i<emprunts.size();i++)
+                {
+                    if(emprunts.get(i).getExemplaire().getOuvrage()==ouvrage&&emprunts.get(i).getExemplaire()==exemplaire)
+                    {
+                        emprunt=emprunts.get(i);
+                    }
+                }
+                if(emprunts!=null)
+                {
+                emprunts.remove(emprunts);
+                exemplaire.setDisponibilite(true);
+                System.out.println("L'exemplaire à été rendu");
+                }
+                else
+                {
+                    System.out.println("Il n'existe pas d'emprunts de numero isbn et du numero d'exemplaire rentré");
+                }
+            }
+            else
+            {
+                
+            }
+        }
     }
 }
 
