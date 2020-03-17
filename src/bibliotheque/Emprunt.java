@@ -41,4 +41,8 @@ public class Emprunt {
         {
             return exemplaire;
         }
+        public Lecteur getLecteur()
+        {
+            return lecteur;
+        }
 }

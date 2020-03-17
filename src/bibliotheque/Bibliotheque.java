@@ -449,8 +449,8 @@ public class Bibliotheque implements Serializable {
             Exemplaire exemplaire=ouvrage.getExemplaire(entree.nextInt());
             if(exemplaire!=null&&exemplaire.estEmprunter())
             {
-                Emprunt emprunt;
-                for(int i =0;i<emprunts.size();i++)
+                Emprunt emprunt=null;
+                for(int i =0;i<emprunts.size()&&emprunt==null;i++)
                 {
                     if(emprunts.get(i).getExemplaire().getOuvrage()==ouvrage&&emprunts.get(i).getExemplaire()==exemplaire)
                     {
@@ -470,9 +470,31 @@ public class Bibliotheque implements Serializable {
             }
             else
             {
-                
+                System.out.println("L'exemplaire n'existe pas ou il n'est pas emprunté");
             }
         }
+        else
+        {
+            System.out.println("Il n'existe pas d'ouvrage du numero isbn saisi");
+        }
+    }
+    public void ConsulterEmpruntsLecteur()
+    {
+        Scanner entree=new Scanner(System.in);
+        System.out.println("Saisissez un numero de lecteur");
+        Lecteur lecteur=lecteurs.get(entree.nextInt());
+        if(lecteur!=null)
+        {
+            for(Emprunt unEmprunt : emprunts)
+            {
+                if(unEmprunt.getLecteur())
+            }
+        }
+        else
+        {
+            System.out.println("Il n'existe pas de lecteur du numéro saisi");
+        }
+        
     }
 }
 
