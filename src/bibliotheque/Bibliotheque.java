@@ -403,7 +403,7 @@ public class Bibliotheque implements Serializable {
                 {
                     if(exemplaire.estEmpruntable()&&lecteur.getNbEMprunt()<5)
                     {
-                        emprunts.add(new Emprunt(lecteur,exemplaire));
+                        this.emprunts.add(new Emprunt(lecteur,exemplaire));
                         System.out.println("L'exemplaire est emprunté, le lecteur à jusqu'au : ");
                     }
                     else
