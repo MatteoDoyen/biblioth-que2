@@ -35,6 +35,14 @@ public class Exemplaire implements Serializable{
         {
             System.out.println("Empruntable : non" );    
         }
+        if(this.disponible==true)
+        {
+            System.out.println("Disponible : oui" );    
+        }
+        else
+        {
+            System.out.println("Disponible : non" );    
+        }
     }
     public void lierOuvrage(Ouvrage ouvrage){
         this.ouvrage = ouvrage;

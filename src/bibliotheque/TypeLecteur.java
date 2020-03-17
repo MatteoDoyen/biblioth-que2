@@ -12,7 +12,7 @@ package bibliotheque;
 public enum TypeLecteur {
     
     //attributs
-    enfant("enfant",10),adolescent("adolescent",16),adulte("adulte",17);
+    enfant("enfant",0),adolescent("adolescent",11),adulte("adulte",17);
     private String type;
     private int ageMin;
     

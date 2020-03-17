@@ -383,7 +383,6 @@ public class Bibliotheque implements Serializable {
         } else {
             System.out.println("Il n'existe pas d'exemplaire du numero isbn saisi");
         }
-
     }
 
     void emprunterExemplaire() {
@@ -404,10 +403,10 @@ public class Bibliotheque implements Serializable {
                 {
                     if(exemplaire.estEmpruntable()&&lecteur.getNbEMprunt()<5)
                     {
-                        if(lecteur.calculAge()<ouvrage.getTypeLecteur().ageMin())
+                        if(lecteur.calculAge()>=ouvrage.getTypeLecteur().ageMin())
                         {
                              this.emprunts.add(new Emprunt(lecteur,exemplaire));
-                              System.out.println("L'exemplaire est emprunté, le lecteur à jusqu'au : ");
+                             System.out.println("L'exemplaire est emprunté");
                         }
                         else
                         {
@@ -432,7 +431,7 @@ public class Bibliotheque implements Serializable {
         }
 
     }
-    void ConsulterLesEmprunts()
+    public void ConsulterLesEmprunts()
     {
         int i=0;
         for(Emprunt unEmprunt : emprunts)
@@ -440,6 +439,10 @@ public class Bibliotheque implements Serializable {
             System.out.println("Emprunts numero : "+i);
             unEmprunt.afficherEmprunt();
         }
+    }
+    public void RendreExemplaire()
+    {
+        
     }
 }
 

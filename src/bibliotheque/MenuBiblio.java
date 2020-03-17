@@ -155,9 +155,9 @@ public class MenuBiblio {
         do {
             EntreesSorties.afficherMessage(" ========================================================");
             EntreesSorties.afficherMessage("| Saisissez un numero correspondant :                    |");
-            EntreesSorties.afficherMessage("| Nouvel Emprunt          : 1                            |");
-            EntreesSorties.afficherMessage("| Consulter Les Emprunts  : 2                            |");
-            EntreesSorties.afficherMessage("| Rendre Un Emprunt       : 3                            |");
+            EntreesSorties.afficherMessage("| Nouvel Emprunt                     : 1                 |");
+            EntreesSorties.afficherMessage("| Consulter Les Exemplaire Emprunté  : 2                 |");
+            EntreesSorties.afficherMessage("| Rendre Un Exemplaire               : 3                 |");
             EntreesSorties.afficherMessage("| Retour Menu Principal   : 0                            |");
             EntreesSorties.afficherMessage(" ========================================================");
             menuExemplaire = EntreesSorties.lireEntier();
