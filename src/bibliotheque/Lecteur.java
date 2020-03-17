@@ -33,6 +33,7 @@ public class Lecteur implements Serializable {
         this.dateNaissance = dateNaissance;
         this.adresse = adresse;
         this.numeroTelephone = numeroTelephone;
+        nbEmprunt=0;
     }
 
    

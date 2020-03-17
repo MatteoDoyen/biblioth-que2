@@ -29,6 +29,7 @@ public class Bibliotheque implements Serializable {
 
         this.setLecteurs(new HashMap<Integer, Lecteur>());
         this.setOuvrages(new HashMap<String, Ouvrage>());
+        emprunts=new ArrayList<>();
         dernierNumeroLecteur = 0;
     }
 
@@ -403,8 +404,15 @@ public class Bibliotheque implements Serializable {
                 {
                     if(exemplaire.estEmpruntable()&&lecteur.getNbEMprunt()<5)
                     {
-                        this.emprunts.add(new Emprunt(lecteur,exemplaire));
-                        System.out.println("L'exemplaire est emprunté, le lecteur à jusqu'au : ");
+                        if(lecteur.calculAge()<ouvrage.getTypeLecteur().ageMin())
+                        {
+                             this.emprunts.add(new Emprunt(lecteur,exemplaire));
+                              System.out.println("L'exemplaire est emprunté, le lecteur à jusqu'au : ");
+                        }
+                        else
+                        {
+                            System.out.println("Le lecteur est trop jeune pour emprunter l'exemplaire");
+                        }
                     }
                     else
                     {

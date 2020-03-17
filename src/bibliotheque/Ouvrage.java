@@ -100,5 +100,9 @@ public class Ouvrage implements Serializable{
         }
         return exemplaire;
     }
+    public TypeLecteur getTypeLecteur()
+    {
+        return cible;
+    }
    
 }
