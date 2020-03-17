@@ -104,5 +104,8 @@ public class Ouvrage implements Serializable{
     {
         return cible;
     }
-   
+    public String getIsbn()
+    {
+        return isbn;
+    }
 }

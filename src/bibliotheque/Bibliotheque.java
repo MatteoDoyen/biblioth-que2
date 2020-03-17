@@ -432,6 +432,15 @@ public class Bibliotheque implements Serializable {
         }
 
     }
+    void ConsulterLesEmprunts()
+    {
+        int i=0;
+        for(Emprunt unEmprunt : emprunts)
+        {   i++;
+            System.out.println("Emprunts numero : "+i);
+            unEmprunt.afficherEmprunt();
+        }
+    }
 }
 
 

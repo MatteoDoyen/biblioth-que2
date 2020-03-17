@@ -85,6 +85,10 @@ public class Lecteur implements Serializable {
     {
         return nbEmprunt;
     }
+    public int getNumLecteur()
+    {
+        return numeroLecteur;
+    }
 }
 
 

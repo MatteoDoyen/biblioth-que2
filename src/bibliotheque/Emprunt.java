@@ -6,6 +6,7 @@
 package bibliotheque;
 
 import java.util.GregorianCalendar;
+import static bibliotheque.EntreesSorties.lireDate;
 
 /**
  *
@@ -28,5 +29,12 @@ public class Emprunt {
             exemplaire.setDisponibilite(false);
             lecteur.addEmprunt();
         }
-        
+        public void afficherEmprunt()
+        {
+            System.out.println("Date d'emprunt : "+EntreesSorties.ecrireDate(dateEmprunt));
+            System.out.println("Date de retour : "+EntreesSorties.ecrireDate(dateRetour));
+            System.out.println("Numero de lecteur : "+lecteur.getNumLecteur()) ;
+            System.out.println("Numero d'isbn de l'ouvrage : "+exemplaire.getOuvrage().getIsbn());
+            System.out.println("Numero de l'exemplaire empruntés : "+exemplaire.getNumeroExemplaire());
+        }
 }

@@ -21,7 +21,7 @@ public class MenuBiblio {
             EntreesSorties.afficherMessage("| Menu Lecteur        : 1                                |");
             EntreesSorties.afficherMessage("| Menu Ouvrage        : 2                                |");
             EntreesSorties.afficherMessage("| Menu Exemplaire     : 3                                |");
-            EntreesSorties.afficherMessage("| Menu Exemplaire     : 4                                |");
+            EntreesSorties.afficherMessage("| Menu Emprunt        : 4                                |");
             EntreesSorties.afficherMessage("| Quitter : 0                                            |");
             EntreesSorties.afficherMessage(" ========================================================");
             menu = EntreesSorties.lireEntier();
@@ -169,11 +169,11 @@ public class MenuBiblio {
                     break;
                 }
                 case 2: {
-                    _bibliotheque.consulterExemplaireOuvrage();
+                     _bibliotheque.ConsulterLesEmprunts();
                     break;
                 }
                 case 3: {
-                    _bibliotheque.consulterExemplaireOuvrage();
+                    _bibliotheque.ConsulterLesEmprunts();
                     DonneesUtilitaire.updateDB(_bibliotheque);
                     break;
                 }

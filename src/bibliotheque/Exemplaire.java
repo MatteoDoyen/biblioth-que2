@@ -51,4 +51,8 @@ public class Exemplaire implements Serializable{
     {
         disponible=disponibilite;
     }
+    public Ouvrage getOuvrage()
+    {
+        return ouvrage;
+    }
 }
