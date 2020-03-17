@@ -29,14 +29,14 @@ public class Ouvrage implements Serializable{
    
     Ouvrage(String isbn, String titre, String nomEditeur, GregorianCalendar dateParution, String nomsAuteurs, TypeLecteur cible){
        
-        isbn = isbn;
-        titre = titre;
-        nomEditeur = nomEditeur;
-        dateParution = dateParution;
-        auteurs = nomsAuteurs;
-        cible = cible;
-        dernierNumeroExemplaire = 0;
-        exemplaires = new ArrayList<>();
+        this.isbn = isbn;
+        this.titre = titre;
+        this.nomEditeur = nomEditeur;
+        this.dateParution = dateParution;
+        this.auteurs = nomsAuteurs;
+        this.cible = cible;
+        this.dernierNumeroExemplaire = 0;
+        this.exemplaires = new ArrayList<>();
     }
    
     public void afficherOuvrage(){

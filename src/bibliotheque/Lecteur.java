@@ -27,12 +27,12 @@ public class Lecteur implements Serializable {
     // -----------------------------------------------
     public Lecteur(String nom, String prenom, Integer numLecteur, GregorianCalendar dateNaissance, String adresse, String numeroTelephone) {
         
-        nom = nom;
-        prenom = prenom;
-        numeroLecteur = numLecteur;
-        dateNaissance = dateNaissance;
-        adresse = adresse;
-        numeroTelephone = numeroTelephone;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.numeroLecteur = numLecteur;
+        this.dateNaissance = dateNaissance;
+        this.adresse = adresse;
+        this.numeroTelephone = numeroTelephone;
     }
 
    

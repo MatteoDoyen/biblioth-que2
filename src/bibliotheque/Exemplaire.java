@@ -17,11 +17,11 @@ public class Exemplaire implements Serializable{
     private boolean disponible;
    
     public Exemplaire (int numExemplaire, GregorianCalendar dateReception,boolean empruntable,Ouvrage ouvrage){
-        numeroExemplaire = numExemplaire;
-        dateReception = dateReception;
-        empruntable = empruntable;
+        this.numeroExemplaire = numExemplaire;
+        this.dateReception = dateReception;
+        this.empruntable = empruntable;
         lierOuvrage(ouvrage);
-        disponible=true;
+        this.disponible=true;
     }
    
     public void afficheExemplaire(){
