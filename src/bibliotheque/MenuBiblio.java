@@ -159,6 +159,7 @@ public class MenuBiblio {
             EntreesSorties.afficherMessage("| Consulter Les Exemplaire Emprunté  : 2                 |");
             EntreesSorties.afficherMessage("| Rendre Un Exemplaire               : 3                 |");
             EntreesSorties.afficherMessage("| Relancer Lecteur                   : 4                 |");
+            EntreesSorties.afficherMessage("| Ajouter un emprunt en retard       : 5                 |");
             EntreesSorties.afficherMessage("| Retour Menu Principal   : 0                            |");
             EntreesSorties.afficherMessage(" ========================================================");
             menuExemplaire = EntreesSorties.lireEntier();
@@ -180,6 +181,11 @@ public class MenuBiblio {
                 }
                     case 4: {
                     _bibliotheque.RelancerLecteur();
+                    break;
+                }
+                    case 5: {
+                    _bibliotheque.enRetard();
+                    DonneesUtilitaire.updateDB(_bibliotheque);
                     break;
                 }
                 case 0:

@@ -29,6 +29,15 @@ public class Emprunt {
             this.exemplaire=exemplaire;
             lecteur.modifierEmprunt(1);
         }
+        public Emprunt(Lecteur lecteur,Exemplaire exemplaire,GregorianCalendar dateEmprunt,GregorianCalendar dateRetour)
+        {
+            this.dateEmprunt=dateRetour;
+            this.dateRetour=dateRetour;
+            this.lecteur=lecteur;
+            exemplaire.setDisponibilite(false);
+            this.exemplaire=exemplaire;
+            lecteur.modifierEmprunt(1);
+        }
         public void afficherEmprunt()
         {
             System.out.println("Titre de l'ouvrage : "+exemplaire.getOuvrage().getTitre());

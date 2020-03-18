@@ -379,6 +379,7 @@ public class Bibliotheque implements Serializable {
             for (Exemplaire exemplaire : ouvrage.getExemplaire()) {
 
                 exemplaire.afficheExemplaire();
+                System.out.println();
             }
         } else {
             System.out.println("Il n'existe pas d'exemplaire du numero isbn saisi ou il n'a aucun exemplaire");
@@ -486,6 +487,7 @@ public class Bibliotheque implements Serializable {
                 if(unEmprunt.getLecteur()==lecteur)
                 {
                     unEmprunt.afficherEmprunt();
+                    System.out.println();
                 }
             }
         }
@@ -493,7 +495,6 @@ public class Bibliotheque implements Serializable {
         {
             System.out.println("Il n'existe pas de lecteur du numéro saisi ou il n'a rien emprunté");
         }
-
     }
     public void RelancerLecteur(){
 
@@ -511,6 +512,18 @@ public class Bibliotheque implements Serializable {
                 emprunts.get(i).afficherEmprunt();
             }
         }
+    }
+    public void enRetard()
+    {
+        GregorianCalendar dateNaissance = new  GregorianCalendar(1996,5,25);
+        GregorianCalendar dateParution = new  GregorianCalendar();
+        GregorianCalendar dateAjout = new  GregorianCalendar(2020,2,1);
+        GregorianCalendar dateRetour = new  GregorianCalendar(2020,2,9);
+        Lecteur lecteur=new Lecteur("DOYEN","Matteo",4,dateNaissance,"bip","04 25 64");
+        Ouvrage ouvrage=new Ouvrage("4","moi","balek",dateParution,"wesh",TypeLecteur.adulte);
+        Exemplaire  exempaire=new Exemplaire(1,dateParution,true,ouvrage);
+        Emprunt emprunt=new Emprunt(lecteur,exempaire,dateAjout,dateRetour);
+        emprunts.add(emprunt);
     }
 }
 
