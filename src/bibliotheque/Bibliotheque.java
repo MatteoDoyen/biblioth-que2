@@ -108,12 +108,12 @@ public class Bibliotheque implements Serializable {
     }
 
     // le getter getlecteurs et le setter setlecteurs sont publics pour permettre le chargement et la sauvegarde de la HashMap
-    public void setLecteurs(HashMap<Integer, Lecteur> dicoLecteur) {
+    private void setLecteurs(HashMap<Integer, Lecteur> dicoLecteur) {
 
         lecteurs = dicoLecteur;
     }
 
-    public void setOuvrages(HashMap<String, Ouvrage> dicoOuvrage) {
+    private void setOuvrages(HashMap<String, Ouvrage> dicoOuvrage) {
 
         ouvrages = dicoOuvrage;
     }
@@ -141,16 +141,8 @@ public class Bibliotheque implements Serializable {
         lecteurs.put(numLecteur, L);
     }
 
-    /*
-	 * La méthode leslecteurs permet de créer un iterator sur les lecteurs, dans le but de les parcourir
-	 * pour eventuellement les relancer.
-     */
-    private Iterator<Lecteur> lesLecteurs() {
 
-        return lecteurs.values().iterator();
-    }
-
-    public Ouvrage getOuvrage(String isbn) {
+    private Ouvrage getOuvrage(String isbn) {
 
         if (ouvrages.containsKey(isbn)) {
 
@@ -161,7 +153,7 @@ public class Bibliotheque implements Serializable {
     }
 
     //le getter getLecteurs et le setter setLecteurs sont publics pour permettre le chargement et la sauvegarde de la HashMap
-    public Lecteur getLecteur(int numeroLecteur) {
+    private Lecteur getLecteur(int numeroLecteur) {
 
         return lecteurs.get(numeroLecteur);
     }
@@ -230,7 +222,7 @@ public class Bibliotheque implements Serializable {
         }
     }
     
-    public void nouvelOuvrageIsbn(String isbn) {
+    private void nouvelOuvrageIsbn(String isbn) {
         if (getOuvrage(isbn) == null) {
 
             System.out.println("Saisir la date de parution");
@@ -444,7 +436,7 @@ public class Bibliotheque implements Serializable {
         {
             System.out.println("Veuillez rentrez le numero d'exemplaire emprunté");
             Exemplaire exemplaire=ouvrage.getExemplaire(entree.nextInt());
-            if(exemplaire!=null&&exemplaire.estEmprunter())
+            if(exemplaire!=null&&exemplaire.estEmprunte())
             {
                 Emprunt emprunt=null;
                 for(int i =0;i<emprunts.size()&&emprunt==null;i++)
@@ -476,6 +468,7 @@ public class Bibliotheque implements Serializable {
             System.out.println("Il n'existe pas d'ouvrage du numero isbn saisi");
         }
     }
+    
     public void ConsulterEmpruntsLecteur()
     {
         Scanner entree=new Scanner(System.in);
@@ -502,39 +495,45 @@ public class Bibliotheque implements Serializable {
 
         GregorianCalendar dateRappel = new GregorianCalendar();
         GregorianCalendar dateAjd = new GregorianCalendar();
-
+        boolean aucunEmpruntEnRetard = true;
+        
         for(int i=0;i<emprunts.size();i++){
 
-            emprunts.get(i).afficherEmprunt();
-            
             dateRappel= (GregorianCalendar) emprunts.get(i).getdateRetour().clone();
             dateRappel.add(GregorianCalendar.DAY_OF_WEEK, 15);
 
             if(dateAjd.compareTo(dateRappel)>=0){
-
                 emprunts.get(i).afficherEmprunt();
+                aucunEmpruntEnRetard=false;
             }
         }
-    }
-     public void AfficherEmprunts(){
-
-        for(int i=0;i<emprunts.size();i++){
-
-                emprunts.get(i).afficherEmprunt();
+        if(aucunEmpruntEnRetard)
+        {
+            System.out.println("Il n'y à aucun emprunts en retard");
         }
     }
-    public void enRetard()
+    /*public void enRetard()
     {
         GregorianCalendar dateNaissance = new  GregorianCalendar(1996,5,25);
         GregorianCalendar dateParution = new  GregorianCalendar();
         GregorianCalendar dateAjout = new  GregorianCalendar(2020,01,27);
-        GregorianCalendar dateRetour = new  GregorianCalendar(2020,02,2);
+        GregorianCalendar dateRetour = new  GregorianCalendar(2020,02,3);
         Lecteur lecteur=new Lecteur("DOYEN","Matteo",4,dateNaissance,"bip","04 25 64");
         Ouvrage ouvrage=new Ouvrage("4","moi","balek",dateParution,"wesh",TypeLecteur.adulte);
         Exemplaire  exempaire=new Exemplaire(1,dateParution,true,ouvrage);
         Emprunt emprunt=new Emprunt(lecteur,exempaire,dateAjout,dateRetour);
         emprunts.add(emprunt);
-    }
+        
+        GregorianCalendar dateNaissance2 = new  GregorianCalendar(1996,5,25);
+        GregorianCalendar dateParution2 = new  GregorianCalendar();
+        GregorianCalendar dateAjout2 = new  GregorianCalendar(2020,01,27);
+        GregorianCalendar dateRetour2 = new  GregorianCalendar(2020,02,4);
+        Lecteur lecteur2=new Lecteur("DOYEN","Matteo",6,dateNaissance2,"bip","04 25 64");
+        Ouvrage ouvrage2=new Ouvrage("4","lui","balek",dateParution2,"wesh",TypeLecteur.adulte);
+        Exemplaire  exempaire2=new Exemplaire(1,dateParution2,true,ouvrage2);
+        Emprunt emprunt2=new Emprunt(lecteur2,exempaire2,dateAjout2,dateRetour2);
+        emprunts.add(emprunt2);
+    }*/
 }
 
 

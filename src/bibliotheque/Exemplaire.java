@@ -63,7 +63,7 @@ public class Exemplaire implements Serializable{
     {
         return ouvrage;
     }
-    public boolean estEmprunter()
+    public boolean estEmprunte()
     {
         return !disponible&&empruntable;
     }
