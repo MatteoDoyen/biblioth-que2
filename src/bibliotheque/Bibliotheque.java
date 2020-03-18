@@ -505,8 +505,9 @@ public class Bibliotheque implements Serializable {
 
         for(int i=0;i<emprunts.size();i++){
 
-        
-            dateRappel=emprunts.get(i).getdateRetour();
+            emprunts.get(i).afficherEmprunt();
+            
+            dateRappel= (GregorianCalendar) emprunts.get(i).getdateRetour().clone();
             dateRappel.add(GregorianCalendar.DAY_OF_WEEK, 15);
 
             if(dateAjd.compareTo(dateRappel)>=0){
@@ -526,8 +527,8 @@ public class Bibliotheque implements Serializable {
     {
         GregorianCalendar dateNaissance = new  GregorianCalendar(1996,5,25);
         GregorianCalendar dateParution = new  GregorianCalendar();
-        GregorianCalendar dateAjout = new  GregorianCalendar(2019,02,1);
-        GregorianCalendar dateRetour = new  GregorianCalendar(2019,02,9);
+        GregorianCalendar dateAjout = new  GregorianCalendar(2020,01,27);
+        GregorianCalendar dateRetour = new  GregorianCalendar(2020,02,2);
         Lecteur lecteur=new Lecteur("DOYEN","Matteo",4,dateNaissance,"bip","04 25 64");
         Ouvrage ouvrage=new Ouvrage("4","moi","balek",dateParution,"wesh",TypeLecteur.adulte);
         Exemplaire  exempaire=new Exemplaire(1,dateParution,true,ouvrage);
