@@ -406,8 +406,10 @@ public class Bibliotheque implements Serializable {
                     {
                         if(lecteur.calculAge()>=ouvrage.getTypeLecteur().ageMin())
                         {
-                             this.emprunts.add(new Emprunt(lecteur,exemplaire));
-                             System.out.println("L'exemplaire est emprunté");
+                            Emprunt emprunt = new Emprunt(lecteur,exemplaire);
+                            this.emprunts.add(emprunt);
+                            System.out.println("L'exemplaire est emprunté, voici les informations concernant l'emprunt :");
+                            emprunt.afficherEmprunt();
                         }
                         else
                         {
@@ -513,12 +515,19 @@ public class Bibliotheque implements Serializable {
             }
         }
     }
+     public void AfficherEmprunts(){
+
+        for(int i=0;i<emprunts.size();i++){
+
+                emprunts.get(i).afficherEmprunt();
+        }
+    }
     public void enRetard()
     {
         GregorianCalendar dateNaissance = new  GregorianCalendar(1996,5,25);
         GregorianCalendar dateParution = new  GregorianCalendar();
-        GregorianCalendar dateAjout = new  GregorianCalendar(2020,2,1);
-        GregorianCalendar dateRetour = new  GregorianCalendar(2020,2,9);
+        GregorianCalendar dateAjout = new  GregorianCalendar(2019,02,1);
+        GregorianCalendar dateRetour = new  GregorianCalendar(2019,02,9);
         Lecteur lecteur=new Lecteur("DOYEN","Matteo",4,dateNaissance,"bip","04 25 64");
         Ouvrage ouvrage=new Ouvrage("4","moi","balek",dateParution,"wesh",TypeLecteur.adulte);
         Exemplaire  exempaire=new Exemplaire(1,dateParution,true,ouvrage);

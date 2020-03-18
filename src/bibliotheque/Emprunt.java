@@ -31,7 +31,7 @@ public class Emprunt {
         }
         public Emprunt(Lecteur lecteur,Exemplaire exemplaire,GregorianCalendar dateEmprunt,GregorianCalendar dateRetour)
         {
-            this.dateEmprunt=dateRetour;
+            this.dateEmprunt=dateEmprunt;
             this.dateRetour=dateRetour;
             this.lecteur=lecteur;
             exemplaire.setDisponibilite(false);
