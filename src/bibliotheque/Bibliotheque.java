@@ -382,12 +382,12 @@ public class Bibliotheque implements Serializable {
         Scanner entree;
         System.out.println("Saisir le numero d'isbn de l'exemplaire à emprunter");
         entree = new Scanner(System.in);
-        String isbn = entree.next();
-        Ouvrage ouvrage= getOuvrage(isbn);
+        Ouvrage ouvrage= getOuvrage(entree.next());
         if (ouvrage != null) {
             System.out.println("Saisir le numero de lecteur");
             entree = new Scanner(System.in);
-            Lecteur lecteur=getLecteur(entree.nextInt());
+            int numeroLecteur = entree.nextInt();
+            Lecteur lecteur=getLecteur(numeroLecteur);
             if (lecteur != null) {
                 System.out.println("Saisir le numero d'exemplaire que vous souhaitez emprunter");
                 entree = new Scanner(System.in);
@@ -398,10 +398,7 @@ public class Bibliotheque implements Serializable {
                     {
                         if(lecteur.calculAge()>=ouvrage.getTypeLecteur().ageMin())
                         {
-                            Emprunt emprunt = new Emprunt(lecteur,exemplaire);
-                            this.emprunts.add(emprunt);
-                            System.out.println("L'exemplaire est emprunté, voici les informations concernant l'emprunt :");
-                            emprunt.afficherEmprunt();
+                            lierEmprunt(numeroLecteur,exemplaire,ouvrage,lecteur);
                         }
                         else
                         {
@@ -426,6 +423,15 @@ public class Bibliotheque implements Serializable {
         }
 
     }
+    public void lierEmprunt(int numeroLecteur,Exemplaire exemplaire,Ouvrage ouvrage,Lecteur lecteur)
+    {
+         Emprunt emprunt = new Emprunt(numeroLecteur,ouvrage.getIsbn(),ouvrage.getTitre(),exemplaire.getNumeroExemplaire());
+         this.emprunts.add(emprunt);
+         lecteur.modifierEmprunt(1);
+         exemplaire.setDisponibilite(false);
+         System.out.println("L'exemplaire est emprunté, voici les informations concernant l'emprunt :");
+         emprunt.afficherEmprunt();
+    }
 
     public void RendreExemplaire()
     {
@@ -441,21 +447,21 @@ public class Bibliotheque implements Serializable {
                 Emprunt emprunt=null;
                 for(int i =0;i<emprunts.size()&&emprunt==null;i++)
                 {
-                    if(emprunts.get(i).getExemplaire().getOuvrage()==ouvrage&&emprunts.get(i).getExemplaire()==exemplaire)
+                    if(getOuvrage(emprunts.get(i).getIsbn())==ouvrage&&emprunts.get(i).getNumExemplaire()==exemplaire.getNumeroExemplaire())
                     {
                         emprunt=emprunts.get(i);
                     }
                 }
-                if(emprunts!=null)
+                if(emprunt!=null)
                 {
                 emprunts.remove(emprunt);
                 exemplaire.setDisponibilite(true);
-                emprunt.getLecteur().modifierEmprunt(-1);
+                getLecteur(emprunt.getNumLecteur()).modifierEmprunt(-1);
                 System.out.println("L'exemplaire à été rendu");
                 }
                 else
                 {
-                    System.out.println("Il n'existe pas d'emprunts de numero isbn et du numero d'exemplaire rentré");
+                    System.out.println("Il n'existe pas d'emprunt de numero isbn et du numero d'exemplaire rentré");
                 }
             }
             else
@@ -473,13 +479,14 @@ public class Bibliotheque implements Serializable {
     {
         Scanner entree=new Scanner(System.in);
         System.out.println("Saisissez un numero de lecteur");
-        Lecteur lecteur=lecteurs.get(entree.nextInt());
+        int numeroLecteur=entree.nextInt();
+        Lecteur lecteur=lecteurs.get(numeroLecteur);
         if(lecteur!=null&&(lecteur.getNbEmprunt()>0))
         {
             lecteur.afficherLecteur();
             for(Emprunt unEmprunt : emprunts)
             {
-                if(unEmprunt.getLecteur()==lecteur)
+                if(unEmprunt.getNumLecteur()==numeroLecteur)
                 {
                     unEmprunt.afficherEmprunt();
                     System.out.println();
@@ -512,7 +519,7 @@ public class Bibliotheque implements Serializable {
             System.out.println("Il n'y à aucun emprunts en retard");
         }
     }
-    /*public void enRetard()
+    public void enRetard()
     {
         GregorianCalendar dateNaissance = new  GregorianCalendar(1996,5,25);
         GregorianCalendar dateParution = new  GregorianCalendar();
@@ -521,7 +528,7 @@ public class Bibliotheque implements Serializable {
         Lecteur lecteur=new Lecteur("DOYEN","Matteo",4,dateNaissance,"bip","04 25 64");
         Ouvrage ouvrage=new Ouvrage("4","moi","balek",dateParution,"wesh",TypeLecteur.adulte);
         Exemplaire  exempaire=new Exemplaire(1,dateParution,true,ouvrage);
-        Emprunt emprunt=new Emprunt(lecteur,exempaire,dateAjout,dateRetour);
+        Emprunt emprunt=new Emprunt(lecteur.getNumLecteur(),ouvrage.getIsbn(),ouvrage.getTitre(),exempaire.getNumeroExemplaire(),dateAjout,dateRetour);
         emprunts.add(emprunt);
         
         GregorianCalendar dateNaissance2 = new  GregorianCalendar(1996,5,25);
@@ -531,9 +538,16 @@ public class Bibliotheque implements Serializable {
         Lecteur lecteur2=new Lecteur("DOYEN","Matteo",6,dateNaissance2,"bip","04 25 64");
         Ouvrage ouvrage2=new Ouvrage("4","lui","balek",dateParution2,"wesh",TypeLecteur.adulte);
         Exemplaire  exempaire2=new Exemplaire(1,dateParution2,true,ouvrage2);
-        Emprunt emprunt2=new Emprunt(lecteur2,exempaire2,dateAjout2,dateRetour2);
+        Emprunt emprunt2=new Emprunt(lecteur2.getNumLecteur(),ouvrage2.getIsbn(),ouvrage2.getTitre(),exempaire2.getNumeroExemplaire(),dateAjout2,dateRetour2);
         emprunts.add(emprunt2);
-    }*/
+    }
+    public void afficherToutLesEmprunts()
+    {
+        for(Emprunt unEmprunt : emprunts)
+        {
+            unEmprunt.afficherEmprunt();
+        }
+    }
 }
 
 

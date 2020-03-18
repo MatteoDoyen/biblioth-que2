@@ -16,43 +16,50 @@ public class Emprunt {
 
         private GregorianCalendar dateEmprunt;
         private GregorianCalendar dateRetour;
-        private Lecteur lecteur;
-        private Exemplaire exemplaire;
+        private int numeroLecteur;
+        private int numeroExemplaire;
+        private String titreOuvrage;
+        private String isbn;
         
-        public Emprunt(Lecteur lecteur,Exemplaire exemplaire)
+        public Emprunt(int numeroLecteur,String isbn,String titreOuvrage,int numeroExemplaire)
         {
             dateEmprunt=new GregorianCalendar();
             dateRetour=new GregorianCalendar();
             dateRetour.add(GregorianCalendar.DAY_OF_WEEK, 8);
-            this.lecteur=lecteur;
-            exemplaire.setDisponibilite(false);
-            this.exemplaire=exemplaire;
-            lecteur.modifierEmprunt(1);
+            this.numeroLecteur=numeroLecteur;
+            this.isbn=isbn;
+            this.titreOuvrage=titreOuvrage;
+            this.numeroExemplaire=numeroExemplaire;
+            
         }
-        public Emprunt(Lecteur lecteur,Exemplaire exemplaire,GregorianCalendar dateEmprunt,GregorianCalendar dateRetour)
+        public Emprunt(int numeroLecteur,String isbn,String titreOuvrage,int numeroExemplaire,GregorianCalendar dateEmprunt,GregorianCalendar dateRetour)
         {
             this.dateEmprunt=dateEmprunt;
             this.dateRetour=dateRetour;
-            this.lecteur=lecteur;
-            exemplaire.setDisponibilite(false);
-            this.exemplaire=exemplaire;
-            lecteur.modifierEmprunt(1);
+            this.numeroLecteur=numeroLecteur;
+            this.isbn=isbn;
+            this.titreOuvrage=titreOuvrage;
+            this.numeroExemplaire=numeroExemplaire;
         }
         public void afficherEmprunt()
         {
-            System.out.println("Titre de l'ouvrage : "+exemplaire.getOuvrage().getTitre());
-            System.out.println("Numero d'isbn de l'ouvrage : "+exemplaire.getOuvrage().getIsbn());
-            System.out.println("Numero de l'exemplaire empruntés : "+exemplaire.getNumeroExemplaire());
+            System.out.println("Titre de l'ouvrage : "+titreOuvrage);
+            System.out.println("Numero d'isbn de l'ouvrage : "+isbn);
+            System.out.println("Numero de l'exemplaire empruntés : "+numeroExemplaire);
             System.out.println("Date d'emprunt : "+EntreesSorties.ecrireDate(dateEmprunt));
             System.out.println("Date de retour : "+EntreesSorties.ecrireDate(dateRetour));
         }
-        public Exemplaire getExemplaire()
+        public int getNumExemplaire()
         {
-            return exemplaire;
+            return numeroExemplaire;
         }
-        public Lecteur getLecteur()
+        public String getIsbn()
         {
-            return lecteur;
+            return isbn;
+        }
+        public int getNumLecteur()
+        {
+            return numeroLecteur;
         }
         public GregorianCalendar getdateRetour()
         {
