@@ -172,16 +172,16 @@ public class MenuBiblio {
                     break;
                 }
                 case 2: {
-                    _bibliotheque.ConsulterEmpruntsLecteur();
+                    _bibliotheque.consulterEmpruntsLecteur();
                     break;
                 }
                 case 3: {
-                    _bibliotheque.RendreExemplaire();
+                    _bibliotheque.rendreExemplaire();
                     DonneesUtilitaire.updateDB(_bibliotheque);
                     break;
                 }
                     case 4: {
-                    _bibliotheque.RelancerLecteur();
+                    _bibliotheque.relancerLecteur();
                     break;
                 }
                     case 5: {

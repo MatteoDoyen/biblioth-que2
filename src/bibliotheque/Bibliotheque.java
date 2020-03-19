@@ -433,7 +433,7 @@ public class Bibliotheque implements Serializable {
          emprunt.afficherEmprunt();
     }
 
-    public void RendreExemplaire()
+    public void rendreExemplaire()
     {
         Scanner entree=new Scanner(System.in);
         System.out.println("Veuillez rentrez le numero d'isbn de l'exemplaire à rendre");
@@ -454,7 +454,7 @@ public class Bibliotheque implements Serializable {
                 }
                 if(emprunt!=null)
                 {
-                supprimerExemplaireEmprunt(exemplaire,emprunt);
+                    supprimerExemplaireEmprunt(exemplaire,emprunt);
                 }
                 else
                 {
@@ -472,7 +472,7 @@ public class Bibliotheque implements Serializable {
         }
     }
     
-    public void ConsulterEmpruntsLecteur()
+    public void consulterEmpruntsLecteur()
     {
         Scanner entree=new Scanner(System.in);
         System.out.println("Saisissez un numero de lecteur");
@@ -495,7 +495,7 @@ public class Bibliotheque implements Serializable {
             System.out.println("Il n'existe pas de lecteur du numéro saisi ou il n'a rien emprunté");
         }
     }
-    public void RelancerLecteur(){
+    public void relancerLecteur(){
 
         GregorianCalendar dateRappel = new GregorianCalendar();
         GregorianCalendar dateAjd = new GregorianCalendar();
