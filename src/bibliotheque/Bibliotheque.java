@@ -454,10 +454,7 @@ public class Bibliotheque implements Serializable {
                 }
                 if(emprunt!=null)
                 {
-                emprunts.remove(emprunt);
-                exemplaire.setDisponibilite(true);
-                getLecteur(emprunt.getNumLecteur()).modifierEmprunt(-1);
-                System.out.println("L'exemplaire à été rendu");
+                supprimerExemplaireEmprunt(exemplaire,emprunt);
                 }
                 else
                 {
@@ -518,6 +515,13 @@ public class Bibliotheque implements Serializable {
         {
             System.out.println("Il n'y à aucun emprunts en retard");
         }
+    }
+    public void supprimerExemplaireEmprunt(Exemplaire exemplaire,Emprunt emprunt)
+    {
+        emprunts.remove(emprunt);
+        exemplaire.setDisponibilite(true);
+        getLecteur(emprunt.getNumLecteur()).modifierEmprunt(-1);
+        System.out.println("L'exemplaire à été rendu");
     }
     public void enRetard()
     {
