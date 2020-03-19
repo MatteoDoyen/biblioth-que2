@@ -412,7 +412,7 @@ public class Bibliotheque implements Serializable {
                 }
                 else
                 {
-                     System.out.println("Le numero d'exemplaire ne correspond à aucun exemplaire pour le numero d'isbn rentré");
+                    System.out.println("Le numero d'exemplaire ne correspond à aucun exemplaire pour le numero d'isbn rentré");
                 }
                 
             } else {
@@ -423,7 +423,7 @@ public class Bibliotheque implements Serializable {
         }
 
     }
-    public void lierEmprunt(int numeroLecteur,Exemplaire exemplaire,Ouvrage ouvrage,Lecteur lecteur)
+    private void lierEmprunt(int numeroLecteur,Exemplaire exemplaire,Ouvrage ouvrage,Lecteur lecteur)
     {
          Emprunt emprunt = new Emprunt(numeroLecteur,ouvrage.getIsbn(),ouvrage.getTitre(),exemplaire.getNumeroExemplaire());
          this.emprunts.add(emprunt);
@@ -516,7 +516,7 @@ public class Bibliotheque implements Serializable {
             System.out.println("Il n'y à aucun emprunts en retard");
         }
     }
-    public void supprimerExemplaireEmprunt(Exemplaire exemplaire,Emprunt emprunt)
+    private void supprimerExemplaireEmprunt(Exemplaire exemplaire,Emprunt emprunt)
     {
         emprunts.remove(emprunt);
         exemplaire.setDisponibilite(true);
