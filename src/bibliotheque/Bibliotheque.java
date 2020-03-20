@@ -526,57 +526,90 @@ public class Bibliotheque implements Serializable {
 
     public void rendreExemplaire()
     {
-        
+            
         Scanner entree=new Scanner(System.in);
+        
+        //saisie numero d'isbn
         System.out.println("Veuillez rentrez le numero d'isbn de l'exemplaire à rendre");
+        
+        //récupérer l'ouvrage
         Ouvrage ouvrage=getOuvrage(entree.next());
+        
+        //si l'ouvrage existe dans la bibliothèque
         if(ouvrage!=null)
         {
+            //saisie du numero d'exemplaire
             System.out.println("Veuillez rentrez le numero d'exemplaire emprunté");
+            
+            //récupérer l'exemplaire
             Exemplaire exemplaire=ouvrage.getExemplaire(entree.nextInt());
-            if(exemplaire!=null&&exemplaire.estEmprunte())
+            
+            //si l'exemplaire existe et qu'il est emprunté
+            if(exemplaire != null && exemplaire.estEmprunte())
             {
-                Emprunt emprunt=null;
-                for(int i =0;i<emprunts.size()&&emprunt==null;i++)
+                
+                Emprunt emprunt = null;
+                
+                //pour chaque emprunt de la liste des emprunts
+                for(int i = 0;i < emprunts.size() && emprunt == null ;i++)
                 {
-                    if(getOuvrage(emprunts.get(i).getIsbn())==ouvrage&&emprunts.get(i).getNumExemplaire()==exemplaire.getNumeroExemplaire())
+                    //si l'on trouve l'emprunt de l'ouvrage et l'exemplaire précédement saisie dans la liste des emprunt
+                    if( getOuvrage(emprunts.get(i).getIsbn()) == ouvrage && emprunts.get(i).getNumExemplaire() == exemplaire.getNumeroExemplaire())
                     {
+                        //récupérer l'emprunt
                         emprunt=emprunts.get(i);
                     }
                 }
-                if(emprunt!=null)
+                //si l'emprunt existe
+                if(emprunt != null)
                 {
+                    //Supprimer l'emprunt de la liste des emprunts
                     supprimerExemplaireEmprunt(exemplaire,emprunt);
                 }
                 else
                 {
+                    
                     System.out.println("Il n'existe pas d'emprunt de numero isbn et du numero d'exemplaire rentré");
                 }
             }
             else
             {
+                
                 System.out.println("L'exemplaire n'existe pas ou il n'est pas emprunté");
             }
         }
         else
         {
+            
             System.out.println("Il n'existe pas d'ouvrage du numero isbn saisi");
         }
     }
     
     public void consulterEmpruntsLecteur()
     {
+        
         Scanner entree=new Scanner(System.in);
+        
+        //saisie du numéro de lecteur
         System.out.println("Saisissez un numero de lecteur");
         int numeroLecteur=entree.nextInt();
+        
+        //récupérer le lecteur
         Lecteur lecteur=lecteurs.get(numeroLecteur);
+        
+        //si le lecteur existe et qu'il a déjà emprunté des documents
         if(lecteur!=null&&(lecteur.getNbEmprunt()>0))
         {
+            //afficher les informations sur le lecteur
             lecteur.afficherLecteur();
+            
+            //pour chaque emprunt de la liste des emprunts
             for(Emprunt unEmprunt : emprunts)
             {
-                if(unEmprunt.getNumLecteur()==numeroLecteur)
+                //si un emprunt est associé à notre lecteur
+                if(unEmprunt.getNumLecteur() == numeroLecteur)
                 {
+                    //afficher les informations de l'emprunt
                     unEmprunt.afficherEmprunt();
                     System.out.println();
                 }
@@ -587,36 +620,53 @@ public class Bibliotheque implements Serializable {
             System.out.println("Il n'existe pas de lecteur du numéro saisi ou il n'a rien emprunté");
         }
     }
+    
+    
     public void relancerLecteur(){
-
+        
         GregorianCalendar dateRappel = new GregorianCalendar();
         GregorianCalendar dateAjd = new GregorianCalendar();
         boolean aucunEmpruntEnRetard = true;
         
-        for(int i=0;i<emprunts.size();i++){
-
+        //pour chaque emprunt de la liste des emprunts
+        for(int i = 0;i < emprunts.size(); i++){
+            
+            //initialiser la date de rappel (date de retour + 15 jours )
             dateRappel= (GregorianCalendar) emprunts.get(i).getdateRetour().clone();
             dateRappel.add(GregorianCalendar.DAY_OF_WEEK, 15);
-
-            if(dateAjd.compareTo(dateRappel)>=0){
+            
+            //si la date d'aujourd'hui est ultérieure à la date de rappel
+            if(dateAjd.compareTo(dateRappel) >= 0){
+                
+                //afficher les informations sur l'emprunt en retard de 15 jours
                 emprunts.get(i).afficherEmprunt();
                 aucunEmpruntEnRetard=false;
             }
         }
+        
         if(aucunEmpruntEnRetard)
         {
             System.out.println("Il n'y à aucun emprunts en retard");
         }
     }
+    
+    
     private void supprimerExemplaireEmprunt(Exemplaire exemplaire,Emprunt emprunt)
     {
+        //supprimer emprunt de la liste des emprunts
         emprunts.remove(emprunt);
+        
+        //rendre l'exemplaire disponible
         exemplaire.setDisponibilite(true);
+        
+        //décrémenter le nombre d'emprunt du lecteur
         getLecteur(emprunt.getNumLecteur()).modifierEmprunt(-1);
+        
         System.out.println("L'exemplaire à été rendu");
     }
     public void enRetard()
     {
+        
         GregorianCalendar dateNaissance = new  GregorianCalendar(1996,5,25);
         GregorianCalendar dateParution = new  GregorianCalendar();
         GregorianCalendar dateAjout = new  GregorianCalendar(2020,01,27);
@@ -637,10 +687,14 @@ public class Bibliotheque implements Serializable {
         Emprunt emprunt2=new Emprunt(lecteur2.getNumLecteur(),ouvrage2.getIsbn(),ouvrage2.getTitre(),exempaire2.getNumeroExemplaire(),dateAjout2,dateRetour2);
         emprunts.add(emprunt2);
     }
+    
+    
     public void afficherToutLesEmprunts()
     {
+        
         for(Emprunt unEmprunt : emprunts)
         {
+            
             unEmprunt.afficherEmprunt();
         }
     }
