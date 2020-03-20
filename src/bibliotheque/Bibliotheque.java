@@ -355,7 +355,7 @@ public class Bibliotheque implements Serializable {
             GregorianCalendar dateReception = lireDate();
             
             //si la date de reception est ultérieur à la date de parution
-            if (dateReception.compareTo(ouvrage.getDateParution()) > 0) {
+            if (dateReception.compareTo(ouvrage.getDateParution()) >= 0) {
                 
                 //saisie du nombre d'exemplaire à ajouter
                 System.out.println("Nombre d'exemplaire(s) à ajouter");
