@@ -384,7 +384,7 @@ public class Bibliotheque implements Serializable {
 
             } else {
 
-                System.out.println("La date de reception est inférieure à celle de parution");
+                System.out.println("La date de reception est inférieure à celle de parution ou elle est supérier à la date du jour");
             }
         }
     }
@@ -665,60 +665,4 @@ public class Bibliotheque implements Serializable {
         
         System.out.println("L'exemplaire à été rendu");
     }
-    public void enRetard()
-    {
-        
-        GregorianCalendar dateNaissance = new  GregorianCalendar(1996,5,25);
-        GregorianCalendar dateParution = new  GregorianCalendar();
-        GregorianCalendar dateAjout = new  GregorianCalendar(2020,01,27);
-        GregorianCalendar dateRetour = new  GregorianCalendar(2020,02,3);
-        Lecteur lecteur=new Lecteur("DOYEN","Matteo",4,dateNaissance,"bip","04 25 64");
-        Ouvrage ouvrage=new Ouvrage("4","moi","balek",dateParution,"wesh",TypeLecteur.adulte);
-        Exemplaire  exempaire=new Exemplaire(1,dateParution,true,ouvrage);
-        Emprunt emprunt=new Emprunt(lecteur.getNumLecteur(),ouvrage.getIsbn(),ouvrage.getTitre(),exempaire.getNumeroExemplaire(),dateAjout,dateRetour);
-        emprunts.add(emprunt);
-        
-        GregorianCalendar dateNaissance2 = new  GregorianCalendar(1996,5,25);
-        GregorianCalendar dateParution2 = new  GregorianCalendar();
-        GregorianCalendar dateAjout2 = new  GregorianCalendar(2020,01,27);
-        GregorianCalendar dateRetour2 = new  GregorianCalendar(2020,02,4);
-        Lecteur lecteur2=new Lecteur("DOYEN","Matteo",6,dateNaissance2,"bip","04 25 64");
-        Ouvrage ouvrage2=new Ouvrage("4","lui","balek",dateParution2,"wesh",TypeLecteur.adulte);
-        Exemplaire  exempaire2=new Exemplaire(1,dateParution2,true,ouvrage2);
-        Emprunt emprunt2=new Emprunt(lecteur2.getNumLecteur(),ouvrage2.getIsbn(),ouvrage2.getTitre(),exempaire2.getNumeroExemplaire(),dateAjout2,dateRetour2);
-        emprunts.add(emprunt2);
-    }
-    
-    
-    public void afficherToutLesEmprunts()
-    {
-        
-        for(Emprunt unEmprunt : emprunts)
-        {
-            
-            unEmprunt.afficherEmprunt();
-        }
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

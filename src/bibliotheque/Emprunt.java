@@ -7,14 +7,15 @@ package bibliotheque;
 
 import java.util.GregorianCalendar;
 import static bibliotheque.EntreesSorties.lireDate;
+import java.io.Serializable;
 
 /**
  *
  * @author doyenma
  */
-public class Emprunt {
+public class Emprunt implements Serializable{
     
-    
+        private static final long serialVersionUID = 254L;
         /*attributs*/
         
         private GregorianCalendar dateEmprunt;
