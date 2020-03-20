@@ -42,11 +42,9 @@ public class Bibliotheque implements Serializable {
     /*
 		 * La méthode nouveauLecteur permet de créé un lecteur en demandant la saisie de son numéro
 		 * nom, prénom, date de naissance, adresse et numéro de téléphone.
-		 * L'age doit être compris entre 3 et 110 ans
-		 * Le lecteur est identifié par son numéro, si celui ci existe déjà dans le dictionnaire
-		 * de bibliothèque, un message d'erreur est affiché.
-		 * Une fois le nouveau lecteur créé, il est ajouté au dictionnaire de lecteur
-		 * afin de garantir la cohérence des données.
+		 * L'age ne peut pas être supérieur à la date du jour
+		 * Le lecteur est identifié par son numero
+                 * Une fois le nouveau lecteur créé, il est ajouté au dictionnaire de lecteur
      */
     public void nouveauLecteur() {
 
@@ -361,7 +359,7 @@ public class Bibliotheque implements Serializable {
             
             //si la date de reception est ultérieur à la date de parution
             if (dateReception.compareTo(ouvrage.getDateParution()) >= 0 && dateReception.compareTo(dateAjd) <= 0 ) {
-                
+
                 //saisie du nombre d'exemplaire à ajouter
                 System.out.println("Nombre d'exemplaire(s) à ajouter");
                 entree = new Scanner(System.in);

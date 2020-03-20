@@ -51,7 +51,7 @@ public class Ouvrage implements Serializable{
         System.out.println("dateParution : "+EntreesSorties.ecrireDate(dateParution));
         System.out.println("auteur(s) : "+auteurs);
         System.out.println("public : "+cible);
-       
+        System.out.println();
     }
    
     
