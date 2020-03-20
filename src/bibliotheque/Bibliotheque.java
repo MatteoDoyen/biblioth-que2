@@ -342,7 +342,7 @@ public class Bibliotheque implements Serializable {
         }
     }
 
-    void consulterOUvrage() {
+    public void consulterOUvrage() {
 
         System.out.println("Entrez le numero isbn de l'ouvrage que vous souhaitez consulter");
         Scanner Entree = new Scanner(System.in);
@@ -378,7 +378,7 @@ public class Bibliotheque implements Serializable {
         }
     }
 
-    void emprunterExemplaire() {
+    public void emprunterExemplaire() {
         Scanner entree;
         System.out.println("Saisir le numero d'isbn de l'exemplaire à emprunter");
         entree = new Scanner(System.in);

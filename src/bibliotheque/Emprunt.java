@@ -30,7 +30,6 @@ public class Emprunt {
             this.isbn=isbn;
             this.titreOuvrage=titreOuvrage;
             this.numeroExemplaire=numeroExemplaire;
-            
         }
         public Emprunt(int numeroLecteur,String isbn,String titreOuvrage,int numeroExemplaire,GregorianCalendar dateEmprunt,GregorianCalendar dateRetour)
         {
