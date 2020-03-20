@@ -55,25 +55,31 @@ public class Bibliotheque implements Serializable {
         Scanner Entree;
         GregorianCalendar datedujour = new GregorianCalendar();
         GregorianCalendar dateNaissance = EntreesSorties.lireDate();
-
+        
+        //si la date de naissance saisie est antérieur à aujourd'hui
         if (dateNaissance.compareTo(datedujour) < 0) {
-
+            
+            //saisie nom du lecteur
             System.out.println("Entrez le nom du lecteur : ");
             Entree = new Scanner(System.in);
             String nomLecteur = Entree.next();
-
+            
+            //Saisie prenom du lecteur
             System.out.println("Entrez le prenom du lecteur : ");
             Entree = new Scanner(System.in);
             String prenomLecteur = Entree.next();
-
+            
+            //saisie adresse du lecteur 
             System.out.println("Entrez l'adresse du lecteur : ");
             Entree = new Scanner(System.in);
             String adresse = Entree.nextLine();
-
+            
+            //saisie numero de telephone
             System.out.println("Entrez le numero de téléphone du lecteur : ");
             Entree = new Scanner(System.in);
             String numeroTelephone = Entree.nextLine();
-
+            
+            //création nouveau lecteur
             dernierNumeroLecteur += 1;
             Lecteur lecteur = new Lecteur(nomLecteur, prenomLecteur, dernierNumeroLecteur, dateNaissance, adresse, numeroTelephone);
             lierLecteur(lecteur, dernierNumeroLecteur);
@@ -141,7 +147,7 @@ public class Bibliotheque implements Serializable {
         lecteurs.put(numLecteur, L);
     }
 
-
+    
     private Ouvrage getOuvrage(String isbn) {
 
         if (ouvrages.containsKey(isbn)) {
@@ -160,32 +166,41 @@ public class Bibliotheque implements Serializable {
 
     public void nouvelOuvrage() {
 
+        //saisie numero ISBN
         System.out.println("Entrez un numero d'ISBN");
         Scanner entree = new Scanner(System.in);
         String isbn = entree.next();
 
         if (getOuvrage(isbn) == null) {
-
+            
+            //saisie date de Parution
             System.out.println("Saisir la date de parution");
             GregorianCalendar dateParution = lireDate();
             GregorianCalendar dateJour = new GregorianCalendar();
-
+            
+            //filtre de saisie, la date de parution doit être antérieur à aujourd'hui
             while (dateParution.compareTo(dateJour) > 0) {
+                
                 System.out.println("La date de parution est ultérieur à aujourd'hui, veuillez rentrer une date valide");
                 dateParution = lireDate();
             }
+            
+            //saisie titre de l'ouvrage
             System.out.println("Saisir le titre du nouvel ouvrage");
             entree = new Scanner(System.in);
             String titreOuvrage = entree.nextLine();
-
+            
+            //saisie nom éditeur
             System.out.println("le nom de l'éditeur");
             entree = new Scanner(System.in);
             String nomEditeur = entree.nextLine();
-
+            
+            //saisie des auteurs
             System.out.println("le ou les auteur(s)");
             entree = new Scanner(System.in);
             String nomAuteur = entree.nextLine();
-
+            
+            //saisie cible
             System.out.println("le type de public (1 enfant,2 adolescent,3 adulte)");
             entree = new Scanner(System.in);
             TypeLecteur lecteur;
@@ -212,9 +227,11 @@ public class Bibliotheque implements Serializable {
                     lecteur = TypeLecteur.adulte;
                     break;
             }
-
+            
+            //créer ouvrage et le lier à bibliothèque
             Ouvrage ouvrage = new Ouvrage(isbn, titreOuvrage, nomEditeur, dateParution, nomAuteur, lecteur);
             lierOuvrage(ouvrage, isbn);
+            
         } else {
 
             System.out.println("Il existe déjà un ouvrage de même isbn dans cette bibliothèque");
@@ -223,58 +240,69 @@ public class Bibliotheque implements Serializable {
     }
     
     private void nouvelOuvrageIsbn(String isbn) {
+        
+        //si l'isbn saisie en paramètre n'est pas existant
         if (getOuvrage(isbn) == null) {
-
+            
+            //saisie date de parution
             System.out.println("Saisir la date de parution");
             Scanner entree = new Scanner(System.in);
             GregorianCalendar dateParution = lireDate();
             GregorianCalendar dateJour = new GregorianCalendar();
-
+            
+            //filtre de saisie, la date de parution doit être antérieur à aujourd'hui
             while (dateParution.compareTo(dateJour) > 0) {
+                
                 System.out.println("La date de parution est ultérieur à aujourd'hui, veuillez rentrer une date valide");
                 dateParution = lireDate();
             }
-                System.out.println("Saisir le titre du nouvel ouvrage");
-                entree = new Scanner(System.in);
-                String titreOuvrage = entree.nextLine();
-                
-                System.out.println("le nom de l'éditeur");
-                entree = new Scanner(System.in);
-                String nomEditeur = entree.nextLine();
-                
-                System.out.println("le ou les auteur(s)");
-                entree = new Scanner(System.in);
-                String nomAuteur = entree.nextLine();
-                
-                System.out.println("le type de public (1 enfant,2 adolescent,3 adulte)");
-                entree = new Scanner(System.in);
-                TypeLecteur lecteur;
-                
-                switch (entree.nextInt()) {
-                    
-                    case 1:
-                        
-                        lecteur = TypeLecteur.enfant;
-                        break;
-                        
-                    case 2:
-                        
-                        lecteur = TypeLecteur.adolescent;
-                        break;
-                        
-                    case 3:
-                        
-                        lecteur = TypeLecteur.adulte;
-                        break;
-                        
-                    default:
-                        
-                        lecteur = TypeLecteur.enfant;
-                        break;
-                }
-                
-                Ouvrage ouvrage = new Ouvrage(isbn, titreOuvrage, nomEditeur, dateParution, nomAuteur, lecteur);
-                lierOuvrage(ouvrage, isbn);
+            
+            //saisie titre de l'ouvrage
+            System.out.println("Saisir le titre du nouvel ouvrage");
+            entree = new Scanner(System.in);
+            String titreOuvrage = entree.nextLine();
+            
+            //saisie nom éditeur
+            System.out.println("le nom de l'éditeur");
+            entree = new Scanner(System.in);
+            String nomEditeur = entree.nextLine();
+            
+            //saisie des auteurs
+            System.out.println("le ou les auteur(s)");
+            entree = new Scanner(System.in);
+            String nomAuteur = entree.nextLine();
+            
+            //saisie cible
+            System.out.println("le type de public (1 enfant,2 adolescent,3 adulte)");
+            entree = new Scanner(System.in);
+            TypeLecteur lecteur;
+            
+            switch (entree.nextInt()) {
+
+                case 1:
+
+                    lecteur = TypeLecteur.enfant;
+                    break;
+
+                case 2:
+
+                    lecteur = TypeLecteur.adolescent;
+                    break;
+
+                case 3:
+
+                    lecteur = TypeLecteur.adulte;
+                    break;
+
+                default:
+
+                    lecteur = TypeLecteur.enfant;
+                    break;
+            }
+            
+            //création de l'ouvrage
+            Ouvrage ouvrage = new Ouvrage(isbn, titreOuvrage, nomEditeur, dateParution, nomAuteur, lecteur);
+            lierOuvrage(ouvrage, isbn);
         }
         else {
             
@@ -282,54 +310,72 @@ public class Bibliotheque implements Serializable {
 
         }
     }
-
+    
+    //ajouter ouvrage à la liste d'ouvrage de bibliothèque
     private void lierOuvrage(Ouvrage ouvrage, String isbn) {
 
         ouvrages.put(isbn, ouvrage);
     }
-
+    
     public void nouvelExemplaire() {
-
+        
+        //saisir numéro d'isbn
         System.out.println("Saisissez le numero d'isbn de l'ouvrage que vous souhaitez ajouter");
         Scanner entree = new Scanner(System.in);
         String isbn = entree.next();
+        
+        //récupérer l'ouvrage
         Ouvrage ouvrage = getOuvrage(isbn);
+        
+        //si l'ouvrage est inexistant demander à l'utilisateur s'il veut le créer 
         if (ouvrage == null) {
 
             System.out.println("Il ne semble pas exister d'ouvrage avec ce numero d'isbn, souhaitez vous le créer ? O/N");
             entree = new Scanner(System.in);
             
+            //si l'utilisateur saisie o pour oui
             if(entree.next().toLowerCase().matches("o")){
-                
+                   
+                //créer ouvrage
                 nouvelOuvrageIsbn(isbn);
                 ouvrage = getOuvrage(isbn);
                 System.out.println("L'ouvrage à été créé, vous allez maintenant lui créer des exemplaires");
+                
             } else {
-
+                
                 System.out.println("Vous avez choisi de ne pas créer d'ouvrage du numero d'isbn saisi");
             }
 
         }
+        //si l'ouvrage existe dans bibliothèque
         if (ouvrage != null) {
-
+            
             System.out.println("L'ouvrage existe, saisissez les informations relative : ");
+            
+            //saisie date de reception
             System.out.println("Date de reception");
             GregorianCalendar dateReception = lireDate();
-
+            
+            //si la date de reception est ultérieur à la date de parution
             if (dateReception.compareTo(ouvrage.getDateParution()) > 0) {
-
+                
+                //saisie du nombre d'exemplaire à ajouter
                 System.out.println("Nombre d'exemplaire(s) à ajouter");
                 entree = new Scanner(System.in);
                 int nombreExemplaire = entree.nextInt();
-
+                
+                //saisie du nombre d'exemplaire à emprunter parmis le nombre d'examplaire à ajouter
                 System.out.println("Nombre d'exemplaire(s) empruntable sur le lot");
                 entree = new Scanner(System.in);
                 int nombreExemplaireEmpruntable = entree.nextInt();
-
+                
+                //si le nombre d'exmplaire empruntable est inférieure au nombre d'exemplaire
                 if (nombreExemplaireEmpruntable <= nombreExemplaire) {
-
+                    
+                    //ajout du nombre d'exemplaire empruntable et non empruntable
                     ouvrage.ajouterExemplaire(nombreExemplaire, nombreExemplaireEmpruntable, dateReception);
                     System.out.println("Tout les exemplaires ont été ajoutés");
+                    
                 } else {
 
                     System.out.println("Le nombre d'exemplaire(s) empruntable(s) est supérieur au(x) nombre(s) d'exemplaire(s)");
@@ -343,11 +389,13 @@ public class Bibliotheque implements Serializable {
     }
 
     public void consulterOUvrage() {
-
+        
+        //saisie du numero d'isbn de l'ouvrage à consulter
         System.out.println("Entrez le numero isbn de l'ouvrage que vous souhaitez consulter");
         Scanner Entree = new Scanner(System.in);
         Ouvrage ouvrage = getOuvrage(Entree.next());
-
+        
+        //si ouvrage est existant
         if (ouvrage != null) {
 
             ouvrage.afficherOuvrage();
@@ -359,15 +407,18 @@ public class Bibliotheque implements Serializable {
     }
 
     public void consulterExemplaireOuvrage() {
-
+        
+        //saisie du numero d'isbn
         System.out.println("Entree un numero d'isbn correct");
         Scanner entree = new Scanner(System.in);
         Ouvrage ouvrage = getOuvrage(entree.next());
-
-        if (ouvrage != null&&ouvrage.getNombreExemplaire()>0) {
-
+        
+        //si l'ouvrage existe et s'il possède des exemplaires
+        if (ouvrage != null && ouvrage.getNombreExemplaire()>0) {
+            
             ouvrage.afficherOuvrage();
-
+            
+            //pour chaque exemplaire de la liste d'exemplaire de l'ouvrage
             for (Exemplaire exemplaire : ouvrage.getExemplaire()) {
 
                 exemplaire.afficheExemplaire();
@@ -379,62 +430,103 @@ public class Bibliotheque implements Serializable {
     }
 
     public void emprunterExemplaire() {
+        
         Scanner entree;
+        
+        //saisie isbn
         System.out.println("Saisir le numero d'isbn de l'exemplaire à emprunter");
         entree = new Scanner(System.in);
+        
+        //récupérer l'ouvrage
         Ouvrage ouvrage= getOuvrage(entree.next());
+        
+        //si l'ouvrage existe dans bibliothèque
         if (ouvrage != null) {
+            
+            //saisie du numéro de lecteur
             System.out.println("Saisir le numero de lecteur");
             entree = new Scanner(System.in);
             int numeroLecteur = entree.nextInt();
+            
+            //récupérer le lecteur
             Lecteur lecteur=getLecteur(numeroLecteur);
+            
+            //si le lecteur existe
             if (lecteur != null) {
+                
+                //saisie du numero d'exemplaire sujet de l'emprunt
                 System.out.println("Saisir le numero d'exemplaire que vous souhaitez emprunter");
                 entree = new Scanner(System.in);
+                
+                //récupérer l'exemplaire
                 Exemplaire exemplaire=ouvrage.getExemplaire(entree.nextInt());
+                
+                //si l'exemplaire existe dans la bibliothèque
                 if(exemplaire!=null)
                 {
-                    if(exemplaire.estEmpruntable()&&lecteur.getNbEmprunt()<5)
+                    //si l'exemplaire est empruntable et si le lecteur n'a pas emprunter plus de 4 exemplaires
+                    if(exemplaire.estEmpruntable() && lecteur.getNbEmprunt() < 5)
                     {
-                        if(lecteur.calculAge()>=ouvrage.getTypeLecteur().ageMin())
+                        //si l'age du lecteur correspond à la tranche d'age de l'ouvrage
+                        if(lecteur.calculAge() >= ouvrage.getTypeLecteur().ageMin())
                         {
+                            
                             lierEmprunt(numeroLecteur,exemplaire,ouvrage,lecteur);
                         }
                         else
                         {
+                            
                             System.out.println("Le lecteur est trop jeune pour emprunter l'exemplaire");
                         }
                     }
                     else
                     {
+                        
                         System.out.println("L'exemplaire n'est pas empruntable ou le lecteur à trop d'emprunt");
                     }
                 }
                 else
                 {
+                    
                     System.out.println("Le numero d'exemplaire ne correspond à aucun exemplaire pour le numero d'isbn rentré");
                 }
                 
-            } else {
+            }
+            else
+            {
+                
                 System.out.println("Aucun lecteur ne correspond au numero de lecteur");
             }
-        } else {
+        }
+        else
+        {
+            
             System.out.println("Aucun ouvrage ne correspond au numero d'isbn saisi");
         }
 
     }
     private void lierEmprunt(int numeroLecteur,Exemplaire exemplaire,Ouvrage ouvrage,Lecteur lecteur)
     {
+        //créer un emprunt avec les paramètre d'appel de lierEmprunt
          Emprunt emprunt = new Emprunt(numeroLecteur,ouvrage.getIsbn(),ouvrage.getTitre(),exemplaire.getNumeroExemplaire());
-         this.emprunts.add(emprunt);
-         lecteur.modifierEmprunt(1);
-         exemplaire.setDisponibilite(false);
-         System.out.println("L'exemplaire est emprunté, voici les informations concernant l'emprunt :");
-         emprunt.afficherEmprunt();
+         
+        //ajouter l'emprunt à la liste des emprunts de bibliothèque
+        this.emprunts.add(emprunt);
+        
+        //ajouter un emprunt au nombre d'emprunt du lecteur
+        lecteur.modifierEmprunt(1);
+        
+        //rendre l'exemplaire indisponible à l'emprunt
+        exemplaire.setDisponibilite(false);
+        
+        //afficher les informations sur l'emprunt
+        System.out.println("L'exemplaire est emprunté, voici les informations concernant l'emprunt :");
+        emprunt.afficherEmprunt();
     }
 
     public void rendreExemplaire()
     {
+        
         Scanner entree=new Scanner(System.in);
         System.out.println("Veuillez rentrez le numero d'isbn de l'exemplaire à rendre");
         Ouvrage ouvrage=getOuvrage(entree.next());
