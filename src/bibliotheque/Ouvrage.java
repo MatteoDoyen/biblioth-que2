@@ -16,7 +16,8 @@ public class Ouvrage implements Serializable{
    
     private static final long serialVersionUID = 424L;
     
-    //attributs
+    /*attributs*/
+    
     private String isbn;
     private String titre;
     private String nomEditeur;
@@ -39,6 +40,9 @@ public class Ouvrage implements Serializable{
         this.exemplaires = new ArrayList<>();
     }
    
+    
+    /*méthode d'affichage*/
+    
     public void afficherOuvrage(){
        
         System.out.println("isbn : "+isbn);
@@ -50,7 +54,8 @@ public class Ouvrage implements Serializable{
        
     }
    
-   
+    
+    /*méthodes*/
    
     public void ajouterExemplaire(int nombreExemplaire, int nombreExemplaireEmpruntable, GregorianCalendar dateReception){
        
@@ -69,50 +74,74 @@ public class Ouvrage implements Serializable{
         }
        
     }
-   
+    
+    
+    /*linkeur*/
    
     public void lierExemplaire(Exemplaire exemplaire){
        
         this.exemplaires.add(exemplaire);
     }
    
-   
+    
+    /*getteurs*/
+    
     public ArrayList<Exemplaire> getExemplaire(){
        
        
         return this.exemplaires;
     }
-   
+    
+    
     public GregorianCalendar getDateParution(){
        
         return this.dateParution;
     }
+    
+    
     public Exemplaire getExemplaire(int NumeroExemplaire)
     {
+        
         Exemplaire exemplaire=null;
+        
         for(Exemplaire unExemplaire : exemplaires)
         {
+            
             if(unExemplaire.getNumeroExemplaire()==NumeroExemplaire)
             {
+                
                 exemplaire=unExemplaire;
             }
         }
+        
         return exemplaire;
     }
+    
+    
     public TypeLecteur getTypeLecteur()
     {
+        
         return cible;
     }
+    
+    
     public String getIsbn()
     {
+        
         return isbn;
     }
+    
+    
     public String getTitre()
     {
+        
         return titre;
     }
+    
+    
     public int getNombreExemplaire()
     {
+        
         return dernierNumeroExemplaire;
     }
 }

@@ -24,6 +24,8 @@ public enum TypeLecteur {
         this.type=type;
         this.ageMin=ageMin;
     }
+    
+    
     public int ageMin(){
         
         return ageMin;

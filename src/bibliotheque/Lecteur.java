@@ -77,16 +77,27 @@ public class Lecteur implements Serializable {
         
         return age;
     }
+    
+    
     public void modifierEmprunt(int modif)
     {
-        nbEmprunt+=modif;
+        
+        nbEmprunt += modif;
     }
+    
+    
+    /*getteur*/
+    
     public int getNbEmprunt()
     {
+        
         return nbEmprunt;
     }
+    
+    
     public int getNumLecteur()
     {
+        
         return numeroLecteur;
     }
 }
